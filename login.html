@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Login - AZEN Learn</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+</head>
+
+<body>
+
+<h1>AZEN Learn Login</h1>
+
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+
+<br><br>
+
+<button onclick="signup()">Sign up</button>
+<button onclick="login()">Log in</button>
+
+<p id="message"></p>
+
+<script>
+
+const supabase = window.supabase.createClient(
+"YOUR_SUPABASE_URL",
+"YOUR_SUPABASE_ANON_KEY"
+)
+
+async function signup(){
+
+const email=document.getElementById("email").value
+const password=document.getElementById("password").value
+
+const {error}=await supabase.auth.signUp({email,password})
+
+if(error){
+document.getElementById("message").innerText=error.message
+}else{
+document.getElementById("message").innerText="Check your email to confirm signup."
+}
+
+}
+
+async function login(){
+
+const email=document.getElementById("email").value
+const password=document.getElementById("password").value
+
+const {error}=await supabase.auth.signInWithPassword({email,password})
+
+if(error){
+document.getElementById("message").innerText=error.message
+}else{
+document.getElementById("message").innerText="Logged in!"
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
