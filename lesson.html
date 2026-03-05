@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Lesson</title>
+
+<style>
+.step{display:none}
+.step.active{display:block}
+</style>
+
+</head>
+
+<body>
+
+<h1>Fractions Lesson</h1>
+
+<div id="step1" class="step active">
+<p>Step 1: Fractions represent parts of a whole.</p>
+<button onclick="nextStep()">Continue</button>
+</div>
+
+<div id="step2" class="step">
+<p>Step 2: The top number is the numerator.</p>
+<button onclick="nextStep()">Continue</button>
+</div>
+
+<div id="step3" class="step">
+<p>Step 3: What is half of 10?</p>
+
+<input id="answer">
+<button onclick="checkAnswer()">Submit</button>
+
+<p id="feedback"></p>
+</div>
+
+<script>
+
+let step=1
+
+function nextStep(){
+document.getElementById("step"+step).classList.remove("active")
+step++
+document.getElementById("step"+step).classList.add("active")
+}
+
+function checkAnswer(){
+
+let answer=document.getElementById("answer").value
+
+if(answer==5){
+document.getElementById("feedback").innerHTML="Correct!"
+}
+else{
+document.getElementById("feedback").innerHTML="Try again"
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
