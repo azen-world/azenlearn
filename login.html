@@ -1,66 +1,88 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-GB">
 <head>
-<title>Login - AZEN Learn</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - AZEN Learn</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;padding:24px;max-width:520px;margin:0 auto}
+    input{display:block;width:100%;padding:10px;margin:10px 0;border:1px solid #ccc;border-radius:10px}
+    button{padding:10px 14px;margin-right:8px;border-radius:999px;border:1px solid #999;background:#f3f3f3;cursor:pointer}
+    #message{margin-top:12px;white-space:pre-wrap}
+  </style>
 </head>
 
 <body>
+  <h1>AZEN Learn Login</h1>
 
-<h1>AZEN Learn Login</h1>
+  <label>Email</label>
+  <input id="email" placeholder="name@example.com" autocomplete="email" />
 
-<input id="email" placeholder="Email">
-<input id="password" type="password" placeholder="Password">
+  <label>Password</label>
+  <input id="password" type="password" placeholder="Password" autocomplete="current-password" />
 
-<br><br>
+  <div>
+    <button type="button" id="btnSignup">Sign up</button>
+    <button type="button" id="btnLogin">Log in</button>
+  </div>
 
-<button onclick="signup()">Sign up</button>
-<button onclick="login()">Log in</button>
+  <p id="message"></p>
 
-<p id="message"></p>
+  <script>
+    const msg = (t) => document.getElementById("message").textContent = t;
 
-<script>
+    // 1) Check the Supabase library loaded
+    if (!window.supabase || !window.supabase.createClient) {
+      msg("Error: Supabase library did not load.\nRefresh the page. If it persists, the CDN may be blocked.");
+      throw new Error("Supabase library not available");
+    }
 
-const supabase = window.supabase.createClient(
-"https://vovobjhenegstgawbiwo.supabase.co",
-"sb_publishable_ONVkZjHevmTrIkJyn9-yoQ_8JlgVbw8"
-)
+    // 2) Create client
+    const supabaseClient = window.supabase.createClient(
+      "https://vovobjhenegstgawbiwo.supabase.co",
+      "sb_publishable_ONVkZjHevmTrIkJyn9-yoQ_8JlgVbw8"
+    );
 
-async function signup(){
+    async function signup() {
+      msg("Signing up...");
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
 
-const email=document.getElementById("email").value
-const password=document.getElementById("password").value
+      if (!email || !password) return msg("Enter an email and password.");
 
-const {error}=await supabase.auth.signUp({email,password})
+      const { data, error } = await supabaseClient.auth.signUp({ email, password });
 
-if(error){
-document.getElementById("message").innerText=error.message
-}else{
-document.getElementById("message").innerText="Check your email to confirm signup."
-}
+      if (error) return msg("Sign up error:\n" + error.message);
 
-}
+      // data.user may be null until email confirmed depending on your settings
+      msg("Sign up OK.\nIf email confirmation is enabled, check your inbox.");
+    }
 
-async function login(){
+    async function login() {
+      msg("Logging in...");
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
 
-const email=document.getElementById("email").value
-const password=document.getElementById("password").value
+      if (!email || !password) return msg("Enter an email and password.");
 
-const {error}=await supabase.auth.signInWithPassword({email,password})
+      const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
 
-if(error){
-document.getElementById("message").innerText=error.message
-}else{
-document.getElementById("message").innerText="Logged in!"
-}
+      if (error) return msg("Login error:\n" + error.message);
 
-}
+      msg("Logged in OK.\nUser: " + (data?.user?.email ?? "unknown"));
 
-</script>
+      // Later we'll redirect to dashboard:
+      // window.location.href = "/dashboard.html";
+    }
 
+    document.getElementById("btnSignup").addEventListener("click", signup);
+    document.getElementById("btnLogin").addEventListener("click", login);
+
+    msg("Ready.");
+  </script>
 </body>
-
 </html>
