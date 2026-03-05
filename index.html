@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AZEN Learn | Functional Skills Maths</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/">AZEN Learn</a>
+
+        <nav class="nav">
+          <a href="#courses">Courses</a>
+          <a href="#pricing">Pricing</a>
+          <a class="btn btn-small" href="/login.html">Log in</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <div>
+            <h1>Functional Skills Maths made simple</h1>
+            <p class="lead">
+              Learn Level 1 and Level 2 with short lessons, vocabulary practice, worked examples and exam-style questions.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn" href="#pricing">See pricing</a>
+              <a class="btn btn-ghost" href="/sample-lesson.html">Try a sample lesson</a>
+            </div>
+
+            <ul class="ticks">
+              <li>Mobile-friendly</li>
+              <li>Track your progress</li>
+              <li>Upgrade for support when you need it</li>
+            </ul>
+          </div>
+
+          <div class="hero-card">
+            <h2>Study plan</h2>
+            <ol>
+              <li>Topic introduction</li>
+              <li>Vocabulary matching</li>
+              <li>Concepts + examples</li>
+              <li>Practice + exam questions</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section id="courses" class="section">
+        <div class="container">
+          <h2>Courses</h2>
+          <div class="grid">
+            <div class="card">
+              <h3>Entry Level 3</h3>
+              <p>Coming soon.</p>
+            </div>
+            <div class="card">
+              <h3>Level 1</h3>
+              <p>Core topics, step-by-step lessons, plenty of practice.</p>
+            </div>
+            <div class="card">
+              <h3>Level 2</h3>
+              <p>Exam-focused topics, harder variants, exam-style questions.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" class="section">
+        <div class="container">
+          <h2>Pricing</h2>
+
+          <div class="grid pricing-grid">
+            <div class="card">
+              <h3>Standard</h3>
+              <p class="price">£4.99<span>/month</span></p>
+              <p class="muted">Or £24.99/year</p>
+              <ul>
+                <li>Level 1 + Level 2 content</li>
+                <li>Quizzes and practice</li>
+                <li>Progress tracking</li>
+              </ul>
+              <a class="btn btn-full" href="/signup.html?plan=standard-monthly">Get Standard</a>
+            </div>
+
+            <div class="card featured">
+              <div class="badge">Best value</div>
+              <h3>Standard (Annual)</h3>
+              <p class="price">£24.99<span>/year</span></p>
+              <p class="muted">Most learners pass within a year</p>
+              <a class="btn btn-full" href="/signup.html?plan=standard-yearly">Get Annual</a>
+            </div>
+
+            <div class="card">
+              <h3>Premium</h3>
+              <p class="price">£14.99<span>/month</span></p>
+              <p class="muted">Or £74.99/year</p>
+              <ul>
+                <li>Everything in Standard</li>
+                <li>Priority support (WhatsApp/manual feedback initially)</li>
+                <li>Extra revision support</li>
+              </ul>
+              <a class="btn btn-full" href="/signup.html?plan=premium-monthly">Get Premium</a>
+            </div>
+          </div>
+
+          <p class="small muted">
+            GCSE Maths: planned for later once Functional Skills is fully built out.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p class="muted">© <span id="year"></span> AZEN Learn</p>
+        <div class="footer-links">
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+          <a href="mailto:hello@azenlearn.co.uk">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
