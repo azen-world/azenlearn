@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Topic lesson | AZEN Learn</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/">AZEN Learn</a>
+        <nav class="nav">
+          <a href="/dashboard.html">Dashboard</a>
+          <a id="backToLevel" href="/l1home.html">Back to level</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container topic-layout">
+        <aside class="card lesson-nav">
+          <h2>Lesson steps</h2>
+          <ol>
+            <li><a href="#intro">1. Topic introduction</a></li>
+            <li><a href="#vocab">2. Key vocabulary</a></li>
+            <li><a href="#examples">3. Worked examples</a></li>
+            <li><a href="#practice">4. Guided practice</a></li>
+            <li><a href="#exam">5. Exam-style questions</a></li>
+            <li><a href="#complete">6. Completion check</a></li>
+          </ol>
+        </aside>
+
+        <div>
+          <section class="card lesson-section" id="intro">
+            <p class="eyebrow" id="topicLevel">Level</p>
+            <h1 id="topicTitle">Topic</h1>
+            <p class="muted" id="topicSummary"></p>
+          </section>
+
+          <section class="card lesson-section" id="vocab">
+            <h2>Key vocabulary</h2>
+            <ul id="vocabList" class="lesson-list"></ul>
+          </section>
+
+          <section class="card lesson-section" id="examples">
+            <h2>Worked examples</h2>
+            <p>Read each worked method carefully before attempting questions.</p>
+            <ul id="exampleList" class="lesson-list"></ul>
+          </section>
+
+          <section class="card lesson-section" id="practice">
+            <h2>Guided practice</h2>
+            <p>Try these short questions. Check your method, not just your final answer.</p>
+            <ul id="practiceList" class="lesson-list"></ul>
+          </section>
+
+          <section class="card lesson-section" id="exam">
+            <h2>Exam-style questions</h2>
+            <ul id="examList" class="lesson-list"></ul>
+          </section>
+
+          <section class="card lesson-section" id="complete">
+            <h2>Completion check</h2>
+            <label class="check-item"><input type="checkbox" /> I completed all lesson sections</label>
+            <label class="check-item"><input type="checkbox" /> I can explain the method in my own words</label>
+            <label class="check-item"><input type="checkbox" /> I attempted at least one exam-style question</label>
+            <div class="hero-actions">
+              <a class="btn" id="returnLink" href="/l1home.html">Back to level topics</a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const topicData = {
+        "number-skills": {
+          title: "Number skills",
+          summary: "Core number fluency for calculations and estimates.",
+          vocab: ["Place value", "Rounding", "Estimate", "Integer"],
+          examples: ["Round 4,786 to nearest 100", "Estimate 39 × 18 by rounding"],
+          practice: ["Order these numbers from smallest to largest", "Estimate total shopping cost"],
+          exam: ["Choose a sensible estimate and justify your choice"]
+        },
+        fractions: {
+          title: "Fractions",
+          summary: "Work confidently with equivalent fractions and calculations.",
+          vocab: ["Numerator", "Denominator", "Equivalent", "Simplify"],
+          examples: ["Simplify 18/24", "Find 3/5 of 40"],
+          practice: ["Order fractions with different denominators", "Add two simple fractions"],
+          exam: ["Recipe scaling question using fractions"]
+        },
+        decimals: {
+          title: "Decimals",
+          summary: "Understand place value and calculate accurately with decimals.",
+          vocab: ["Tenths", "Hundredths", "Decimal point", "Approximate"],
+          examples: ["Multiply 2.4 × 0.5", "Convert fraction to decimal"],
+          practice: ["Add prices with decimals", "Round to 2 decimal places"],
+          exam: ["Money and measurement decimal problem"]
+        },
+        percentages: {
+          title: "Percentages",
+          summary: "Calculate percentages and percentage changes in context.",
+          vocab: ["Percentage", "Increase", "Decrease", "Original value"],
+          examples: ["Find 15% of 240", "Increase £80 by 12%"],
+          practice: ["Discount calculations", "Percentage of amount"],
+          exam: ["Compare two phone tariffs with percentage discounts"]
+        },
+        "ratio-proportion": {
+          title: "Ratio and proportion",
+          summary: "Split amounts and interpret ratio in practical contexts.",
+          vocab: ["Ratio", "Proportion", "Share", "Scale"],
+          examples: ["Share £90 in ratio 2:3", "Simplify 18:30"],
+          practice: ["Recipe scaling", "Ratio table completion"],
+          exam: ["Multi-step ratio sharing question"]
+        },
+        "measures-conversions": {
+          title: "Measures and conversions",
+          summary: "Convert units and solve practical measure questions.",
+          vocab: ["Metric", "Convert", "Capacity", "Distance"],
+          examples: ["Convert 2.5m to cm", "Convert litres to ml"],
+          practice: ["Time duration problems", "Money conversion"],
+          exam: ["Travel and fuel conversion problem"]
+        },
+        "perimeter-area-volume": {
+          title: "Perimeter, area and volume",
+          summary: "Apply geometry measures to everyday scenarios.",
+          vocab: ["Perimeter", "Area", "Volume", "Units squared"],
+          examples: ["Area of rectangle", "Volume of cuboid"],
+          practice: ["Compound perimeter", "Find missing side from area"],
+          exam: ["Flooring or paint estimation task"]
+        },
+        "handling-data": {
+          title: "Handling data",
+          summary: "Read charts, calculate averages and compare data.",
+          vocab: ["Mean", "Median", "Mode", "Range"],
+          examples: ["Find mean from table", "Interpret bar chart"],
+          practice: ["Compare two data sets", "Choose best average"],
+          exam: ["Business data interpretation question"]
+        },
+        "number-estimation": {
+          title: "Number and estimation",
+          summary: "Use approximation to judge reasonableness of answers.",
+          vocab: ["Order of operations", "Bounds", "Estimate", "Accuracy"],
+          examples: ["Estimate total bill", "Use BIDMAS correctly"],
+          practice: ["Check calculator output", "Bounds question"],
+          exam: ["Budgeting problem with estimation checks"]
+        },
+        "fdp-advanced": {
+          title: "Fractions, decimals and percentages",
+          summary: "Solve linked FDP problems with confidence.",
+          vocab: ["Recurring decimal", "Multiplier", "Percentage change", "Equivalent"],
+          examples: ["Compound percentage change", "Convert recurring decimal"],
+          practice: ["FDP match tasks", "Contextual percentage problem"],
+          exam: ["Financial comparison with percentages"]
+        },
+        "ratio-scale": {
+          title: "Ratio and scale",
+          summary: "Apply scale factors and ratio in real-life planning tasks.",
+          vocab: ["Scale factor", "Proportional", "Map scale", "Best value"],
+          examples: ["Use 1:50000 map scale", "Scale recipe for 30 people"],
+          practice: ["Best-buy unit rate", "Ratio with constraints"],
+          exam: ["Event planning scale and cost problem"]
+        },
+        "algebra-formulae": {
+          title: "Algebra and formulae",
+          summary: "Manipulate expressions and solve linear equations.",
+          vocab: ["Expression", "Equation", "Substitute", "Rearrange"],
+          examples: ["Solve 3x + 5 = 20", "Substitute into formula"],
+          practice: ["Form equation from sentence", "Two-step equation"],
+          exam: ["Formula use in practical context"]
+        },
+        "graphs-coordinates": {
+          title: "Graphs and coordinates",
+          summary: "Interpret and create simple linear representations.",
+          vocab: ["Gradient", "Intercept", "Axis", "Coordinate"],
+          examples: ["Plot points on grid", "Read values from line graph"],
+          practice: ["Travel graph interpretation", "Match equation to line"],
+          exam: ["Temperature/time graph reasoning"]
+        },
+        "geometry-measures": {
+          title: "Geometry and measures",
+          summary: "Use angle and measurement rules in practical scenarios.",
+          vocab: ["Interior angle", "Circumference", "Area", "Volume"],
+          examples: ["Angles on a straight line", "Area of circle"],
+          practice: ["Volume and capacity", "Composite area"],
+          exam: ["Construction plan measurement question"]
+        },
+        probability: {
+          title: "Probability",
+          summary: "Measure chance and calculate expected outcomes.",
+          vocab: ["Outcome", "Likelihood", "Expected value", "Sample space"],
+          examples: ["Probability of event", "Expected winnings"],
+          practice: ["Two-event probability", "Relative frequency"],
+          exam: ["Game fairness investigation"]
+        },
+        statistics: {
+          title: "Statistics",
+          summary: "Interpret statistics to make justified decisions.",
+          vocab: ["Mean", "Median", "Outlier", "Spread"],
+          examples: ["Compare averages", "Draw conclusion from data"],
+          practice: ["Boxplot comparison", "Misleading graph spotting"],
+          exam: ["Decision-making from survey data"]
+        }
+      };
+
+      const params = new URLSearchParams(window.location.search);
+      const level = params.get("level") === "2" ? "2" : "1";
+      const topic = params.get("topic") || "fractions";
+      const data = topicData[topic] || topicData.fractions;
+
+      const levelLabel = `Functional Skills Maths • Level ${level}`;
+      document.title = `${data.title} | Level ${level} | AZEN Learn`;
+      document.getElementById("topicLevel").textContent = levelLabel;
+      document.getElementById("topicTitle").textContent = data.title;
+      document.getElementById("topicSummary").textContent = data.summary;
+
+      const listInto = (id, items) => {
+        const list = document.getElementById(id);
+        items.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          list.appendChild(li);
+        });
+      };
+
+      listInto("vocabList", data.vocab);
+      listInto("exampleList", data.examples);
+      listInto("practiceList", data.practice);
+      listInto("examList", data.exam);
+
+      const levelLink = level === "2" ? "/L2%20home.html" : "/l1home.html";
+      document.getElementById("backToLevel").href = levelLink;
+      document.getElementById("returnLink").href = levelLink;
+    </script>
+  </body>
+</html>

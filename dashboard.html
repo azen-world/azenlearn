@@ -1,32 +1,47 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard | AZEN Learn</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/">AZEN Learn</a>
+        <nav class="nav">
+          <a href="/dashboard.html" aria-current="page">Dashboard</a>
+          <a href="/l1-home.html">Level 1</a>
+          <a href="/l2-home.html">Level 2</a>
+        </nav>
+      </div>
+    </header>
 
-<head>
-<title>AZEN Learn Dashboard</title>
-</head>
+    <main class="section dashboard-main">
+      <div class="container">
+        <div class="page-intro card">
+          <p class="eyebrow">Learner home</p>
+          <h1>Your maths dashboard</h1>
+          <p class="lead">Choose your level below. Each level home gives quick access to lessons, quizzes, and exam papers.</p>
+        </div>
 
-<body>
+        <section class="level-grid" aria-label="Course levels">
+          <article class="card level-card">
+            <p class="level-tag">Functional Skills</p>
+            <h2>Level 1</h2>
+            <p class="muted">Core skills for everyday maths and workplace confidence.</p>
+            <a class="btn btn-full" href="/l1-home.html">Open Level 1 home</a>
+          </article>
 
-<h1>AZEN Learn Dashboard</h1>
-
-<h2>Level 1 Topics</h2>
-
-<ul>
-<li><a href="/lesson.html">Fractions</a></li>
-<li>Decimals</li>
-<li>Percentages</li>
-<li>Ratio</li>
-<li>Measurement</li>
-</ul>
-
-<h2>Level 2 Topics</h2>
-
-<ul>
-<li>Algebra</li>
-<li>Probability</li>
-<li>Statistics</li>
-</ul>
-
-</body>
-
+          <article class="card level-card">
+            <p class="level-tag">Functional Skills</p>
+            <h2>Level 2</h2>
+            <p class="muted">Higher-level reasoning, multi-step problems and exam preparation.</p>
+            <a class="btn btn-full" href="/l2-home.html">Open Level 2 home</a>
+          </article>
+        </section>
+      </div>
+    </main>
+  </body>
 </html>
