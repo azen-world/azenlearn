@@ -74,6 +74,7 @@
       if (error) return msg("Login error:\n" + error.message);
 
       msg("Logged in OK.\nUser: " + (data?.user?.email ?? "unknown"));
+      window.location.href="/dashboard.html";
 
       // Later we'll redirect to dashboard:
       // window.location.href = "/dashboard.html";
